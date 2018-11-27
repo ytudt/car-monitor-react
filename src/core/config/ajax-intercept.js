@@ -24,7 +24,7 @@ axios.interceptors.response.use((response) => {
   // }
   return response;
 }, (err) => {
-  if(err.response && (err.response.status == 401)){
+  if(err.response && (err.response.status === 401)){
     // location.href = `${location.origin}/#/login`;
     return Cookies.remove('token');
   }

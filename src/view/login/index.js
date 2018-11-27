@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 import { Form, Icon, Input, Button, message } from 'antd';
 import {withRouter} from "react-router-dom";
 import MD5 from 'md5';
-import api from '../api';
-import loginBg from '../img/login-bg.jpeg';
+import Cookies from 'js-cookie';
+import api from '../../api/index';
+import loginBg from '../../img/login-bg.jpeg';
+import {timeMap} from '../../core/constant';
 const loginWrap = {
     backgroundImage: `url(${loginBg})`,
     height: '100%',
@@ -25,23 +27,8 @@ function hasErrors(fieldsError) {
 }
 
 class App extends Component {
-    constructor(props) {
-        super(props);
-    }
     componentDidMount() {
         this.props.form.validateFields();
-    }
-
-    handleLogin = (e) => {
-        e.preventDefault();
-        this.props.form.validateFields((err, values) => {
-            const {userName, password} = values;
-            api.login.doLogin({userName, password: MD5(password)})
-            .then(({data}) => {
-                if(!data.success) return message.error(data.message);
-                this.props.history.push('/');
-            }).catch(() => {message.error('登录失败')});
-        });
     }
     render() {
         const { getFieldDecorator, getFieldsError, isFieldTouched, getFieldError } = this.props.form;
@@ -83,6 +70,18 @@ class App extends Component {
 
             </div>
         );
+    }
+    handleLogin = (e) => {
+        e.preventDefault();
+        this.props.form.validateFields((err, values) => {
+            const {userName, password} = values;
+            api.login.doLogin({userName, password: MD5(password)})
+                .then(({data}) => {
+                    if(!data.success) return message.error(data.message);
+                    Cookies.set('token', data.data, { expires: timeMap.tokenValidTime * 1 / 24 });
+                    this.props.history.push('/');
+                }).catch(() => {message.error('登录失败')});
+        });
     }
 }
 export default withRouter(Form.create()(App));

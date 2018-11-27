@@ -1,7 +1,7 @@
 import React from 'react';
-import Index from '../view/Index';
-import Login from '../view/Login';
-import {Switch, Route} from 'react-router-dom'
+import {Switch} from 'react-router-dom'
+import AuthorizedRoute from './auth.js'
+import Main from '../view/main/index.js';
 
 const main = {
     height: '100%',
@@ -9,8 +9,7 @@ const main = {
 const Routes = () => (
     <main style={main}>
         <Switch>
-            <Route path='/login' component={Login}/>
-            <Route path='/' component={Index}/>
+            <AuthorizedRoute path="/" component={Main} />
         </Switch>
     </main>
 )

@@ -1,0 +1,32 @@
+.main-layout{
+    height: 100%;
+}
+.main-header{
+    color: #fff;
+}
+.logo,.name{
+    float: left;
+}
+.name{
+    color: #fff;
+    margin-left: 10px;
+    font-size: 18px;
+}
+.logo{
+    width: 55px;
+    height: 50px;
+    background: url("../../img/logo.png") no-repeat;
+    background-size: cover;
+    position: relative;
+    top: 7px;
+}
+.dropdown-wrap{
+    float: right;
+}
+.dropdown-wrap, .ant-dropdown-link{
+    color: #fff;
+}
+.main-content{
+    display: flex;
+    flex-direction: column;
+}

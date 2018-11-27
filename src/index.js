@@ -6,6 +6,7 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { HashRouter } from 'react-router-dom';
 import './core/config';
+// import './mock'
 
 
 ReactDOM.render(<HashRouter><App /></HashRouter>, document.getElementById('root'));
