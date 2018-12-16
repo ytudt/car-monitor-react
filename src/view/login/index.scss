@@ -1,0 +1,13 @@
+.login-wrap{
+  background-image: url("../../img/login-bg.jpeg");
+  background-size: cover;
+  height: 100%;
+  padding-top: 100px;
+  .login-content{
+    width: 400px;
+    margin: 200px auto;
+    background: #fff;
+    padding: 50px 50px 10px;
+    border-radius: 5px;
+  }
+}

@@ -1,30 +1,42 @@
 import React, { Component } from 'react';
-import Cookies from 'js-cookie';
 import {withRouter} from "react-router-dom";
-import { Layout, Icon, Dropdown, Menu } from 'antd';
-import './index.css'
+import {Dropdown, Layout, Menu, message} from 'antd';
+import './index.scss'
 import Map from './map/index.js';
-const { Header, Content } = Layout;
+import Header from '../../components/header/index.js';
+import api from "../../api";
+const {Content } = Layout;
+const MenuItem = Menu.Item;
 
 class App extends Component {
+    constructor(props, context) {
+        super(props, context);
+        this.state = {
+            showDialog: false,
+            userName: '',
+            password: '',
+            carList: [],
+            userInfo: {},
+        };
+    }
     render() {
-        const menu = (
-            <Menu>
-                <Menu.Item>
-                    <div onClick={this.logOut.bind(this)}>退出登录</div>
-                </Menu.Item>
-            </Menu>
-        );
+        const menu = (<Menu>
+            {this.state.carList.map((item, index) => {
+                return <MenuItem key={index} onClick={this.handleTrailShow.bind(this, item)}>
+                    {item.licenseNumber}
+                </MenuItem>
+            })
+            }
+        </Menu>);
         return (
             <Layout className="main-layout">
-                <Header className="main-header">
-                    <div className="logo" />
-                    <h1 className="name">北京**科技有限公司</h1>
-                    <Dropdown overlay={menu} className="dropdown-wrap">
-                        <a className="ant-dropdown-link" href="#">
-                            设置 <Icon type="down" />
-                        </a>
-                    </Dropdown>
+                <Header>
+                    <div className="header-menu-list">
+                        <Dropdown overlay={menu} className="header-menu-item dropdown-wrap">
+                            <span>轨迹</span>
+                        </Dropdown>
+                        <div className="header-menu-item">配置台</div>
+                    </div>
                 </Header>
                 <Content className="main-content">
                     <Map></Map>
@@ -32,9 +44,20 @@ class App extends Component {
             </Layout>
         );
     }
-    logOut(){
-        Cookies.remove('token');
-        this.props.history.push('/login');
+
+    componentWillMount(){
+        this.getCarList();
+    }
+
+    getCarList(){
+        api.main.getVehicles()
+            .then(({data}) => {
+                this.setState({carList: data.data});
+            })
+            .catch(() => message.error('车辆数据获取失败,请刷新重试~'));
+    }
+    handleTrailShow(car){
+        console.log(car);
     }
 }
 

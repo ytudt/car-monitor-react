@@ -1,0 +1,45 @@
+
+
+.main-header{
+  color: #fff;
+  .logo,.name,.slot-wrap{
+    float: left;
+    display: inline-block;
+  }
+  .name{
+    color: #fff;
+    margin-left: 10px;
+    font-size: 18px;
+  }
+  .logo{
+    width: 55px;
+    height: 50px;
+    background: url("../../img/logo.png") no-repeat;
+    background-size: cover;
+    position: relative;
+    top: 7px;
+  }
+  .slot-wrap{
+    margin-left: 10px;
+  }
+
+  .dropdown-wrap{
+    float: right;
+    .ant-dropdown-link{
+      color: #fff;
+    }
+  }
+  .modify-password-wrap{
+    .input-item{
+      display: inline-block;
+    }
+    .ant-form-item-label{
+      width: 50px;
+    }
+    .ant-form-item-control-wrapper{
+      display: inline-block;
+      width: calc(100% - 100px);
+      margin-left: 10px;
+    }
+  }
+}

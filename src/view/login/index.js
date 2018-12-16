@@ -4,22 +4,9 @@ import {withRouter} from "react-router-dom";
 import MD5 from 'md5';
 import Cookies from 'js-cookie';
 import api from '../../api/index';
-import loginBg from '../../img/login-bg.jpeg';
 import {timeMap} from '../../core/constant';
-const loginWrap = {
-    backgroundImage: `url(${loginBg})`,
-    height: '100%',
-    backgroundSize: 'cover',
-    paddingTop: '100px',
-};
+import './index.css';
 
-const loginContent = {
-    width: '400px',
-    margin: '200px auto',
-    background: '#fff',
-    padding: '50px 50px 10px',
-    borderRadius: '5px',
-};
 const FormItem = Form.Item;
 
 function hasErrors(fieldsError) {
@@ -35,8 +22,8 @@ class App extends Component {
         const userNameError = isFieldTouched('userName') && getFieldError('userName');
         const passwordError = isFieldTouched('password') && getFieldError('password');
         return (
-            <div className="login-wrap" style={loginWrap}>
-                <div style={loginContent}>
+            <div className="login-wrap">
+                <div className="login-content">
                     <Form onSubmit={this.handleLogin}>
                         <FormItem
                             validateStatus={userNameError ? 'error' : ''}

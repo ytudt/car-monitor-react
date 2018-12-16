@@ -1,0 +1,15 @@
+.main-layout{
+    height: 100%;
+    .header-menu-list{
+        .header-menu-item{
+            float: left;
+            display: inline-block;
+            margin-right: 10px;
+            cursor: pointer;
+        }
+    }
+    .main-content{
+        display: flex;
+        flex-direction: column;
+     }
+}

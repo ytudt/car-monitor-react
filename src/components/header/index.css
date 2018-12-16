@@ -1,0 +1,30 @@
+.main-header {
+  color: #fff; }
+  .main-header .logo, .main-header .name, .main-header .slot-wrap {
+    float: left;
+    display: inline-block; }
+  .main-header .name {
+    color: #fff;
+    margin-left: 10px;
+    font-size: 18px; }
+  .main-header .logo {
+    width: 55px;
+    height: 50px;
+    background: url("../../img/logo.png") no-repeat;
+    background-size: cover;
+    position: relative;
+    top: 7px; }
+  .main-header .slot-wrap {
+    margin-left: 10px; }
+  .main-header .dropdown-wrap {
+    float: right; }
+    .main-header .dropdown-wrap .ant-dropdown-link {
+      color: #fff; }
+  .main-header .modify-password-wrap .input-item {
+    display: inline-block; }
+  .main-header .modify-password-wrap .ant-form-item-label {
+    width: 50px; }
+  .main-header .modify-password-wrap .ant-form-item-control-wrapper {
+    display: inline-block;
+    width: calc(100% - 100px);
+    margin-left: 10px; }
