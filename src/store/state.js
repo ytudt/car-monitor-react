@@ -1,5 +1,5 @@
 export default {
-    userInfo: {
-        userName: 'haha'
-    },
+  userInfo: {
+    userName: 'haha'
+  },
 }
