@@ -9,6 +9,7 @@ import PropTypes from 'prop-types';
 import {Layout} from 'antd';
 import {withRouter} from "react-router-dom";
 import {setUserInfo} from '../../store/actions.js'
+import UserInfo from '../userInfo'
 
 const {Header} = Layout;
 
@@ -21,6 +22,7 @@ class App extends Component {
     super(props, context)
     this.state = {
       showDialog: false,
+      showUserInfo: false,
       userName: '',
       password: '',
     };
@@ -34,10 +36,13 @@ class App extends Component {
     const menu = (
       <Menu>
         <MenuItem>
-          <div onClick={this.logOut.bind(this)}>退出登录</div>
+          <div onClick={this.handleShowUserInfo.bind(this)}>用户信息</div>
         </MenuItem>
         <MenuItem>
           <div onClick={this.modifyPassword.bind(this)}>修改密码</div>
+        </MenuItem>
+        <MenuItem>
+          <div onClick={this.logOut.bind(this)}>退出登录</div>
         </MenuItem>
       </Menu>
     );
@@ -73,6 +78,11 @@ class App extends Component {
                                  style={{color: 'rgba(0,0,0,.25)'}}/>} type="text" placeholder="Password"/>
           </FormItem>
         </Modal>
+
+        { this.state.showUserInfo &&  <UserInfo showUserInfo={this.state.showUserInfo}
+                                                userInfo={this.props.userInfo}
+                                                handleOk={this.handleUserOk.bind(this)}
+                                                handleCancel={this.handleUserCancel.bind(this)}/> }
       </Header>
     );
   }
@@ -101,6 +111,15 @@ class App extends Component {
 
   onPasswordChange(e) {
     this.setState({password: e.target.value});
+  }
+  handleShowUserInfo(){
+    this.setState({showUserInfo: true});
+  }
+  handleUserOk(){
+    this.setState({showUserInfo: false});
+  }
+  handleUserCancel(){
+    this.setState({showUserInfo: false});
   }
 
   handSubmit() {
